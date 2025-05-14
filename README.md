@@ -1,16 +1,12 @@
-# Project Title
+# Laravel 導入
 
-## Description
-A brief description of your project.
+以下のドキュメントを参照し、Laravelを導入します。
 
-## Installation
-Instructions on how to install and set up the project.
+## インストール手順
 
-## Usage
-Instructions on how to use the project.
-
-## Contributing
-Guidelines for contributing to the project.
-
-## License
-Information about the project's license.
+- リクエストのライフサイクル
+- 設定
+- ディレクトリ構成
+- フロントエンド
+- サービスコンテナ
+- ファサード
