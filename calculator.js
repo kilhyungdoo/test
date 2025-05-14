@@ -4,7 +4,7 @@
 
 // 加算関数
 function add(a, b) {
-  return a - b;
+  return a + b;
 }
 
 // 減算関数
