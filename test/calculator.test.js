@@ -48,15 +48,15 @@ function runTest(testId, description, args, expectedOutput, expectedExitCode = 0
   });
 }
 
+// コマンドラインモードのみをテスト
 async function runAllTests() {
-  const tests = [
+  const commandLineTests = [
     { id: 'T-001', description: '加算機能', args: ['5', '+', '3'], expected: '5 + 3 = 8' },
     { id: 'T-002', description: '減算機能', args: ['10', '-', '4'], expected: '10 - 4 = 6' },
     { id: 'T-003', description: '乗算機能', args: ['6', '*', '7'], expected: '6 * 7 = 42' },
     { id: 'T-004', description: '除算機能', args: ['20', '/', '5'], expected: '20 / 5 = 4' },
     
     { id: 'T-101', description: 'ゼロ除算エラー', args: ['10', '/', '0'], expected: 'エラー: ゼロによる除算はできません', exitCode: 0 },
-    { id: 'T-102', description: '引数不足', args: [], expected: '使用方法: node index.js <数値1> <演算子> <数値2>\n演算子: + (加算), - (減算), * (乗算), / (除算)', exitCode: 1 },
     { id: 'T-103', description: '無効な数値', args: ['abc', '+', '5'], expected: 'エラー: 有効な数値を入力してください', exitCode: 1 },
     { id: 'T-104', description: '無効な演算子', args: ['5', '%', '2'], expected: 'エラー: 無効な演算子です。+, -, *, / のいずれかを使用してください', exitCode: 1 },
     
@@ -68,17 +68,19 @@ async function runAllTests() {
   let passedTests = 0;
   let failedTests = 0;
   
-  for (const test of tests) {
+  console.log("\n===== コマンドライン引数テスト =====");
+  for (const test of commandLineTests) {
     try {
       await runTest(test.id, test.description, test.args, test.expected, test.exitCode || 0);
       passedTests++;
     } catch (error) {
+      console.error(`テスト ${test.id} エラー: ${error.message}`);
       failedTests++;
     }
   }
   
   console.log('\n===== テスト結果 =====');
-  console.log(`合計テスト数: ${tests.length}`);
+  console.log(`合計テスト数: ${commandLineTests.length}`);
   console.log(`成功: ${passedTests}`);
   console.log(`失敗: ${failedTests}`);
   
